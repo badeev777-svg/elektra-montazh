@@ -486,35 +486,150 @@
     .rv-el { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .rv-el.in { opacity: 1; transform: translateY(0); }
 
-    /* ── RESPONSIVE ── */
+    /* ══════════════════ RESPONSIVE ══════════════════ */
+
+    /* ── Планшет ── */
     @media (max-width: 1024px) {
-      .sec { padding: 72px 32px; }
-      .hero { padding: 96px 32px 72px; }
-      nav { padding: 0 32px; }
-      footer { padding: 28px 32px; }
-      .cta-wrap { padding: 48px 32px 72px; }
+      nav { padding: 0 28px; }
+      .nav-right .nav-call { display: none; }
+
+      .hero { padding: 96px 28px 64px; max-width: 100%; }
+
+      .sec { padding: 72px 28px; }
+      .cta-wrap { padding: 40px 28px 72px; }
+      footer { padding: 28px 28px; }
+
       .why-grid { grid-template-columns: repeat(2,1fr); }
-      .pricing-grid { grid-template-columns: 1fr; }
+
+      .pricing-grid { grid-template-columns: 1fr; max-width: 480px; }
       .pc.hot { transform: none; }
       .pc.hot:hover { transform: translateY(-5px); }
-      .reviews-grid { grid-template-columns: 1fr; }
+
+      .reviews-grid { grid-template-columns: repeat(2,1fr); }
     }
+
+    /* ── Мобильный ── */
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
+      /* Nav */
+      nav { padding: 0 16px; height: 60px; }
       .nav-mid, .nav-right { display: none; }
       .burger { display: flex; }
-      .hero { padding: 88px 20px 60px; }
-      .sec { padding: 60px 20px; }
-      .svc-grid { grid-template-columns: 1fr; border-radius: 16px; }
+      .mob { top: 60px; }
+
+      /* Hero */
+      .hero {
+        padding: 80px 16px 52px;
+        min-height: auto;
+        align-items: center;
+        text-align: center;
+      }
+      .hero::after { display: none; }
+      .h-chip { font-size: 0.76rem; padding: 6px 14px; margin-bottom: 24px; }
+      .hero h1 { font-size: clamp(2.4rem, 10vw, 3.2rem); margin-bottom: 18px; }
+      .hero-sub { font-size: 0.95rem; max-width: 100%; margin-bottom: 16px; }
+
+      /* USP bar — скрываем разделители, делаем 2 колонки */
+      .usp-bar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 32px;
+        width: 100%;
+      }
+      .usp-div { display: none; }
+      .usp-item {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 0.78rem;
+        justify-content: center;
+      }
+
+      /* Hero buttons — стек */
+      .hero-btns { flex-direction: column; width: 100%; }
+      .btn-cta, .btn-out { width: 100%; justify-content: center; padding: 15px 20px; }
+
+      /* Hero proof — 2×2 */
+      .hero-proof {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 40px;
+        width: 100%;
+      }
+      .proof-sep { display: none; }
+      .proof-item {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 12px;
+        padding: 16px 12px;
+        align-items: center;
+        text-align: center;
+      }
+      .proof-num { font-size: 1.6rem; }
+      .proof-label { font-size: 0.72rem; }
+
+      /* Sections */
+      .sec { padding: 56px 16px; }
+      .sec-h { font-size: clamp(1.7rem, 7vw, 2.2rem); }
+      .sec-p { font-size: 0.93rem; margin-bottom: 36px; }
+
+      /* Services */
+      .svc-grid {
+        grid-template-columns: 1fr;
+        border-radius: 16px;
+        gap: 1px;
+      }
+      .svc { padding: 28px 22px; }
       .svc:nth-child(1) { border-radius: 16px 16px 0 0; }
-      .svc:nth-child(2) { border-radius: 0; }
-      .svc:nth-child(3) { border-radius: 0; }
+      .svc:nth-child(2), .svc:nth-child(3) { border-radius: 0; }
       .svc:nth-child(4) { border-radius: 0 0 16px 16px; }
-      .why-grid { grid-template-columns: 1fr; }
-      .cta-wrap { padding: 32px 20px 56px; }
-      .cta-box { padding: 44px 24px; }
-      footer { padding: 24px 20px; flex-direction: column; text-align: center; }
-      .float { bottom: 20px; right: 20px; }
+      .svc h3 { font-size: 1.15rem; }
+
+      /* Why */
+      .why-grid { grid-template-columns: 1fr; gap: 10px; }
+      .why { padding: 24px 20px; }
+
+      /* Process */
+      .steps { max-width: 100%; }
+      .step-r { padding: 8px 0 28px; }
+      .step-r h4 { font-size: 0.95rem; }
+      .step-r p { font-size: 0.83rem; }
+
+      /* Pricing */
+      .pricing-grid { max-width: 100%; gap: 12px; }
+      .pc { padding: 28px 22px; border-radius: 16px; }
+      .pc-price { font-size: 2rem; }
+
+      /* Reviews */
+      .reviews-grid { grid-template-columns: 1fr; gap: 12px; }
+      .rv { padding: 24px 20px; }
+
+      /* CTA */
+      .cta-wrap { padding: 24px 16px 56px; }
+      .cta-box { padding: 40px 20px; border-radius: 20px; }
+      .cta-box h2 { font-size: clamp(1.5rem, 7vw, 2rem); }
+      .cta-box > p { font-size: 0.9rem; }
+      .cta-btns { flex-direction: column; align-items: stretch; }
+      .cb { justify-content: center; padding: 14px 20px; }
+
+      /* Footer */
+      footer { padding: 24px 16px; flex-direction: column; text-align: center; gap: 12px; }
+      .foot-links { justify-content: center; flex-wrap: wrap; gap: 14px; }
+
+      /* Float btn */
+      .float { bottom: 18px; right: 16px; }
+      .float-main { width: 50px; height: 50px; }
+    }
+
+    /* ── Маленький телефон ── */
+    @media (max-width: 390px) {
+      .hero h1 { font-size: 2.2rem; }
+      .h-chip { font-size: 0.7rem; }
+      .usp-bar { grid-template-columns: 1fr; }
+      .hero-proof { grid-template-columns: 1fr 1fr; }
+      .svc { padding: 24px 18px; }
     }
   </style>
 </head>
