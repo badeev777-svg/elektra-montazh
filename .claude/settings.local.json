@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:elektromontazh-profi.ru)",
+      "WebFetch(domain:electromontag-rf.ru)",
+      "WebFetch(domain:remcraft.ru)",
+      "WebFetch(domain:ads-elektro.ru)",
+      "WebFetch(domain:electromaster.by)",
+      "WebFetch(domain:tmelectro.ru)",
+      "WebFetch(domain:chastnyj-elektrik.ru)",
+      "WebFetch(domain:www.housecallpro.com)",
+      "WebFetch(domain:squarestash.com)",
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(netlify --version)",
+      "Bash(npm --version)",
+      "Bash(winget list:*)",
+      "Bash(npx --version)",
+      "Bash(curl --version)",
+      "Bash(gh repo:*)",
+      "Bash(powershell -Command \"Compress-Archive -Path index.html,favicon.svg -DestinationPath site.zip -Force\")",
+      "Bash(curl -X POST \"https://api.netlify.com/api/v1/sites\" -H \"Content-Type: application/zip\" --data-binary \"@site.zip\")"
+    ]
+  }
+}
