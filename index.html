@@ -1193,6 +1193,87 @@ function mob(open) {
 }
 document.getElementById('brg').addEventListener('click', () => mob(!mobOpen));
 
+// ── CALCULATOR ──
+// Цены — только стоимость работ, без учёта материалов.
+const PRICES = {
+  apartment: {
+    outlet: 500,
+    light: 500,
+    panel: { none: 0, install: 12000, replace: 3500 },
+    cable: 500,
+  },
+  house: { perSqm: 1000 },
+};
+
+let calcMode = 'apartment';
+let calcResultShown = false;
+let calcLastTotal = 0;
+
+function calcSetMode(mode) {
+  calcMode = mode;
+  document.querySelectorAll('.calc-toggle-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.mode === mode);
+  });
+  document.getElementById('calc-apartment').style.display = mode === 'apartment' ? '' : 'none';
+  document.getElementById('calc-house').style.display = mode === 'house' ? '' : 'none';
+  document.getElementById('calc-result').style.display = 'none';
+  calcResultShown = false;
+}
+
+function calcApartmentTotal() {
+  const outlet = Number(document.getElementById('calc-outlet').value) || 0;
+  const light = Number(document.getElementById('calc-light').value) || 0;
+  const panel = document.getElementById('calc-panel-select').value;
+  const cable = Number(document.getElementById('calc-cable').value) || 0;
+  const p = PRICES.apartment;
+  let total = 0;
+  total += outlet * p.outlet;
+  total += light * p.light;
+  total += p.panel[panel];
+  total += cable * p.cable;
+  return total;
+}
+
+function calcHouseTotal() {
+  const area = Number(document.getElementById('calc-area').value) || 0;
+  return area * PRICES.house.perSqm;
+}
+
+function calcCalculate() {
+  calcLastTotal = calcMode === 'apartment' ? calcApartmentTotal() : calcHouseTotal();
+  document.getElementById('calc-sum-val').textContent = calcLastTotal.toLocaleString('ru-RU');
+  document.getElementById('calc-result').style.display = '';
+  calcResultShown = true;
+}
+
+function calcOnInput() {
+  if (calcResultShown) calcCalculate();
+}
+
+function calcApartmentDetails() {
+  const outlet = document.getElementById('calc-outlet').value || 0;
+  const light = document.getElementById('calc-light').value || 0;
+  const panelSelect = document.getElementById('calc-panel-select');
+  const panelText = panelSelect.options[panelSelect.selectedIndex].text;
+  const cable = document.getElementById('calc-cable').value || 0;
+  return `Квартира. Розетки/выключатели: ${outlet} шт, точки света: ${light} шт, электрощит: ${panelText}, штробление/кабель: ${cable} м.`;
+}
+
+function calcHouseDetails() {
+  const area = document.getElementById('calc-area').value || 0;
+  return `Дом/коттедж. Площадь: ${area} м².`;
+}
+
+function calcSendTelegram() {
+  const name = document.getElementById('calc-name').value.trim();
+  const phone = document.getElementById('calc-phone').value.trim();
+  const details = calcMode === 'apartment' ? calcApartmentDetails() : calcHouseDetails();
+  const sum = calcLastTotal.toLocaleString('ru-RU');
+  const text = `Заявка с калькулятора.\n${details}\nОриентировочная стоимость работ: ${sum} ₽\nИмя: ${name || '-'}\nТелефон: ${phone || '-'}`;
+  const url = `https://t.me/CowboyAleksandr?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank', 'noopener');
+}
+
 // ── REVEAL ──
 const obs = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
