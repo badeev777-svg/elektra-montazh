@@ -999,7 +999,7 @@
       <div class="calc-lead">
         <input type="text" id="calc-name" class="calc-input" placeholder="Ваше имя">
         <input type="tel" id="calc-phone" class="calc-input" placeholder="Телефон">
-        <button type="button" class="btn-cta calc-btn" onclick="calcSendTelegram()">Отправить в Telegram</button>
+        <button type="button" class="btn-cta calc-btn" onclick="calcSendMax()">Отправить в MAX</button>
       </div>
     </div>
   </div>
@@ -1268,13 +1268,18 @@ function calcHouseDetails() {
   return `Дом/коттедж. Площадь: ${area} м².`;
 }
 
-function calcSendTelegram() {
+function calcSendMax() {
   const name = document.getElementById('calc-name').value.trim();
   const phone = document.getElementById('calc-phone').value.trim();
   const details = calcMode === 'apartment' ? calcApartmentDetails() : calcHouseDetails();
   const sum = calcLastTotal.toLocaleString('ru-RU');
   const text = `Заявка с калькулятора.\n${details}\nОриентировочная стоимость работ: ${sum} ₽\nИмя: ${name || '-'}\nТелефон: ${phone || '-'}`;
-  const url = `https://t.me/CowboyAleksandr?text=${encodeURIComponent(text)}`;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Текст заявки скопирован — вставьте его в чат MAX.');
+    }).catch(() => {});
+  }
+  const url = 'https://max.ru/+79164476591';
   window.open(url, '_blank', 'noopener');
 }
 
