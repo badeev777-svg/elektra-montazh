@@ -941,6 +941,64 @@
   </div>
 </section>
 
+<!-- ════ CALCULATOR ════ -->
+<section class="sec" id="calculator">
+  <div class="rv-el">
+    <div class="eyebrow">🧮 Калькулятор</div>
+    <h2 class="sec-h">Рассчитайте <em>стоимость</em></h2>
+    <p class="sec-p">Предварительный расчёт стоимости работ займёт 30 секунд. Точную смету составим после бесплатного выезда.</p>
+  </div>
+
+  <div class="calc-box rv-el">
+    <div class="calc-toggle">
+      <button type="button" class="calc-toggle-btn active" data-mode="apartment" onclick="calcSetMode('apartment')">Квартира</button>
+      <button type="button" class="calc-toggle-btn" data-mode="house" onclick="calcSetMode('house')">Дом, коттедж</button>
+    </div>
+
+    <div class="calc-panel" id="calc-apartment">
+      <div class="calc-field">
+        <label for="calc-outlet">Розетки и выключатели, шт.</label>
+        <input type="number" id="calc-outlet" class="calc-input" min="0" value="0" oninput="calcOnInput()">
+      </div>
+      <div class="calc-field">
+        <label for="calc-light">Точки освещения, шт.</label>
+        <input type="number" id="calc-light" class="calc-input" min="0" value="0" oninput="calcOnInput()">
+      </div>
+      <div class="calc-field">
+        <label for="calc-panel-select">Электрощит</label>
+        <select id="calc-panel-select" class="calc-input" onchange="calcOnInput()">
+          <option value="none">Не требуется</option>
+          <option value="install">Сборка нового</option>
+          <option value="replace">Замена автоматов</option>
+        </select>
+      </div>
+      <div class="calc-field">
+        <label for="calc-cable">Штробление и кабель, м</label>
+        <input type="number" id="calc-cable" class="calc-input" min="0" value="0" oninput="calcOnInput()">
+      </div>
+    </div>
+
+    <div class="calc-panel" id="calc-house" style="display:none">
+      <div class="calc-field">
+        <label for="calc-area">Площадь дома, м²</label>
+        <input type="number" id="calc-area" class="calc-input" min="0" value="0" oninput="calcOnInput()">
+      </div>
+    </div>
+
+    <button type="button" class="btn-cta calc-btn" onclick="calcCalculate()">Рассчитать</button>
+
+    <div class="calc-result" id="calc-result" style="display:none">
+      <div class="calc-sum">≈ <span id="calc-sum-val">0</span> ₽</div>
+      <p class="calc-note">Это ориентировочная оценка стоимости работ (без учёта материалов). Точную смету составим после бесплатного выезда.</p>
+      <div class="calc-lead">
+        <input type="text" id="calc-name" class="calc-input" placeholder="Ваше имя">
+        <input type="tel" id="calc-phone" class="calc-input" placeholder="Телефон">
+        <button type="button" class="btn-cta calc-btn" onclick="calcSendTelegram()">Отправить в Telegram</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ════ PRICING ════ -->
 <section class="sec sec-alt" id="pricing">
   <div class="rv-el">
