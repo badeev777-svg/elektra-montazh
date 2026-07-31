@@ -242,6 +242,42 @@
 
     @keyframes fu { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
 
+    /* ── CALCULATOR ── */
+    .calc-box {
+      background: var(--card); border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--r); padding: 40px; max-width: 640px;
+    }
+    .calc-toggle {
+      display: flex; gap: 8px; margin-bottom: 32px;
+      background: rgba(255,255,255,0.03); border-radius: 12px; padding: 4px;
+    }
+    .calc-toggle-btn {
+      flex: 1; padding: 12px 16px; border-radius: 9px; border: none;
+      background: transparent; color: var(--sub); font-weight: 700; font-size: 0.9rem;
+      cursor: pointer; transition: background 0.25s, color 0.25s;
+      font-family: inherit;
+    }
+    .calc-toggle-btn.active { background: linear-gradient(135deg, var(--accent), var(--a2)); color: #000; }
+    .calc-panel { display: flex; flex-direction: column; gap: 18px; margin-bottom: 28px; }
+    .calc-field { display: flex; flex-direction: column; gap: 8px; }
+    .calc-field label { font-size: 0.85rem; color: var(--sub); font-weight: 600; }
+    .calc-input {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; padding: 12px 14px; color: var(--text); font-size: 0.95rem;
+      font-family: inherit; width: 100%;
+    }
+    .calc-input:focus { outline: none; border-color: rgba(251,191,36,.4); }
+    .calc-btn { width: 100%; justify-content: center; }
+    .calc-result { margin-top: 28px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .calc-sum {
+      font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--accent), var(--a2));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    .calc-note { font-size: 0.83rem; color: var(--muted); margin-bottom: 20px; }
+    .calc-lead { display: flex; flex-direction: column; gap: 12px; }
+
     /* ── SECTION BASE ── */
     .sec { position: relative; z-index: 1; padding: 96px 56px; }
     .sec-alt { background: rgba(255,255,255,0.018); }
